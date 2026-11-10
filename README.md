@@ -9,8 +9,10 @@
 ## 2. Mapeamento das Questões
 Mapeamento dos trechos de código e funções onde cada requisito de avaliação foi implementado:
 
-* **Questão 01:** `[Nome da Função / Trecho / Arquivo]`
-  * *Descrição:* [Explicação de como atende a questão]
+* **Questão 01:** `JS/app.js`
+  * *Descrição:* 
+  Declarado o Array com 31 valores e seus atributos mais 4 categorias escolhidas (Linguagem, Frameworks, IDEs, IAs). 
+  Desenvolvido catálogo de acordo com enunciado e 2 funções (adicionar, emDestaque).
 * **Questão 02:** `[Nome da Função / Trecho / Arquivo]`
   * *Descrição:* [Explicação de como atende a questão]
 * **Questão 03:** `[Nome da Função / Trecho / Arquivo]`
