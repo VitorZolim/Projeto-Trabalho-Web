@@ -105,6 +105,20 @@ function criarCard(item){
     const ano = document.createElement('p');
     ano.textContent = 'Ano: ' + item.ano.toFixed(0);
 
+    //[R5] Adição do Botão e sua lógica
+    const botao = document.createElement('button');
+    if (item.destaque) {
+    botao.textContent = 'Remover destaque';
+    } 
+    else {
+    botao.textContent = 'Destacar';
+    }  
+
+    card.classList.toggle('destaque', item.destaque);
+    botao.addEventListener('click', () => {
+        alternarDestaque(item, card, botao);
+    });
+
     let texto = item.descricao;
     if(texto.length > 60){
         texto = texto.slice(0, 60) + '…';
@@ -116,6 +130,7 @@ function criarCard(item){
     card.appendChild(categoria);
     card.appendChild(ano);
     card.appendChild(descricao);
+    card.appendChild(botao);
 
     return card;
 }
@@ -233,3 +248,21 @@ form.addEventListener('submit', function(event){
         mensagem.classList.add('mensagem-erro');
     }
 });
+
+// [R5] Interação nos cards
+
+//Implementado na [R2] que gera os cards
+function alternarDestaque(item, card, botao) {
+    item.destaque = !item.destaque;
+
+    card.classList.toggle('destaque', item.destaque);
+
+    if (item.destaque) {
+        botao.textContent = 'Remover destaque';
+    } 
+    else {
+        botao.textContent = 'Destacar';
+    }  
+
+    //atualizarPainel(catalogo.itens); possivelmente será adicionado após a [R6]
+}
