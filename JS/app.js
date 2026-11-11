@@ -60,3 +60,64 @@ const catalogo = {
     }
 };
 
+// [R2] Renderização dinâmica
+const lista = document.getElementById('lista');
+
+function renderizar(itens){
+    lista.innerHTML = '';
+
+    if(itens.length === 0){
+        const aviso = document.createElement('p');
+        aviso.textContent = 'Nenhum item encontrado';
+        lista.appendChild(aviso);
+    } else {
+        for(let i = 0; i < itens.length; i++){
+            const card = criarCard(itens[i]);
+            lista.appendChild(card);
+        }
+    }
+}
+
+function criarCard(item){
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    switch(item.categoria){
+        case 'Linguagem':
+            card.classList.add('cat-linguagem');
+            break;
+        case 'Framework':
+            card.classList.add('cat-framework');
+            break;
+        case 'IDE':
+            card.classList.add('cat-ide');
+            break;
+        default:
+            card.classList.add('cat-outros');
+    }
+
+    const nome = document.createElement('h3');
+    nome.textContent = item.nome;
+
+    const categoria = document.createElement('p');
+    categoria.textContent = item.categoria;
+
+    const ano = document.createElement('p');
+    ano.textContent = 'Ano: ' + item.ano.toFixed(0);
+
+    let texto = item.descricao;
+    if(texto.length > 60){
+        texto = texto.slice(0, 60) + '…';
+    }
+    const descricao = document.createElement('p');
+    descricao.textContent = texto;
+
+    card.appendChild(nome);
+    card.appendChild(categoria);
+    card.appendChild(ano);
+    card.appendChild(descricao);
+
+    return card;
+}
+
+renderizar(catalogo.itens);
