@@ -122,7 +122,6 @@ function criarCard(item){
 
 renderizar(catalogo.itens);
 
-<<<<<<< HEAD
 
 // [R3] Busca e filtro
 
@@ -145,25 +144,26 @@ function filtragem(lista) {
     return novaLista;
 }
 
-// Busca enquanto o usuário digita
 busca.addEventListener("input", function () {
     let resultado = filtragem(ferramentas);
     renderizar(resultado);
 });
 
-// Filtra quando a categoria é alterada
+
 categoria.addEventListener("change", function () {
     let resultado = filtragem(ferramentas);
     renderizar(resultado);
 });
 
-// Limpa a busca ao pressionar Escape
+
 busca.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
         busca.value = "";
         let resultado = filtragem(ferramentas);
         renderizar(resultado);
-=======
+    }
+});
+
 // [R4] Cadastro de novas ferramentas com validação
 const form = document.getElementById('form-cadastro');
 const campoNome = document.getElementById('nome');
@@ -231,6 +231,5 @@ form.addEventListener('submit', function(event){
     } catch(erro){
         mensagem.textContent = erro.message;
         mensagem.classList.add('mensagem-erro');
->>>>>>> ffbf3e12a615b777a9939aae30eae72a7a72d28a
     }
 });
