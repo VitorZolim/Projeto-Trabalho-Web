@@ -121,3 +121,46 @@ function criarCard(item){
 }
 
 renderizar(catalogo.itens);
+
+
+// [R3] Busca e filtro
+
+const busca = document.getElementById("busca");
+const categoria = document.getElementById("filtro-categoria");
+
+function filtragem(lista) {
+    let nome = busca.value.toLowerCase();
+    let categoriaSelecionada = categoria.value;
+    let novaLista = [];
+
+    lista.forEach((item) => {
+        let correspondeTexto = item.nome.toLowerCase().indexOf(nome) !== -1;
+
+        if (correspondeTexto && (categoriaSelecionada === "Todas" || item.categoria === categoriaSelecionada)) {
+            novaLista.push(item);
+        }
+    });
+
+    return novaLista;
+}
+
+// Busca enquanto o usuário digita
+busca.addEventListener("input", function () {
+    let resultado = filtragem(ferramentas);
+    renderizar(resultado);
+});
+
+// Filtra quando a categoria é alterada
+categoria.addEventListener("change", function () {
+    let resultado = filtragem(ferramentas);
+    renderizar(resultado);
+});
+
+// Limpa a busca ao pressionar Escape
+busca.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        busca.value = "";
+        let resultado = filtragem(ferramentas);
+        renderizar(resultado);
+    }
+});
