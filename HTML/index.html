@@ -1,0 +1,117 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Ferramentas de Tecnologia</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/app.js" defer=""></script>
+</head>
+<body>
+
+  <header class="cabecalho">
+    <h1>Catálogo de Ferramentas de Tecnologia</h1>
+    <p>Pesquise, filtre e cadastre as ferramentas que você usa no dia a dia.</p>
+  </header>
+
+  <main class="principal">
+
+    <!-- BUSCA E FILTRO (Questão 03) -->
+    <section class="bloco" aria-labelledby="titulo-busca">
+      <h2 id="titulo-busca">Buscar e filtrar</h2>
+      <div class="linha-filtros">
+        <div class="campo">
+          <label for="busca">Buscar por nome</label>
+          <input type="text" id="busca" placeholder="Digite para buscar... (Esc limpa)">
+        </div>
+        <div class="campo">
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria">
+            <option value="Todas">Todas</option>
+            <!-- As categorias podem ser adicionadas aqui ou pelo JavaScript -->
+            <option value="Editores">Editores</option>
+            <option value="Versionamento">Versionamento</option>
+            <option value="Frameworks">Frameworks</option>
+            <option value="Design">Design</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAINEL DE ESTATÍSTICAS (Questão 06) -->
+    <section class="bloco" aria-labelledby="titulo-painel">
+      <h2 id="titulo-painel">Painel</h2>
+      <div class="painel" id="painel">
+        <div class="estatistica">
+          <span class="estatistica-rotulo">Itens exibidos</span>
+          <strong id="stat-total">—</strong>
+        </div>
+        <div class="estatistica">
+          <span class="estatistica-rotulo">Favoritos</span>
+          <strong id="stat-favoritos">—</strong>
+        </div>
+        <div class="estatistica">
+          <span class="estatistica-rotulo">Preço médio (R$)</span>
+          <strong id="stat-media">—</strong>
+        </div>
+        <div class="estatistica">
+          <span class="estatistica-rotulo">Mais caro</span>
+          <strong id="stat-maior">—</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTA DE CARDS (Questão 02): começa vazia, o JavaScript cria os cards -->
+    <section class="bloco" aria-labelledby="titulo-lista">
+      <h2 id="titulo-lista">Ferramentas</h2>
+      <div class="lista" id="lista"></div>
+    </section>
+
+    <!-- FORMULÁRIO DE CADASTRO (Questão 04): novalidate, quem valida é o JavaScript -->
+    <section class="bloco" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Cadastrar nova ferramenta</h2>
+
+      <form id="form-cadastro" novalidate="">
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex.: Visual Studio Code">
+        </div>
+
+        <div class="campo">
+          <label for="preco">Preço mensal (R$)</label>
+          <input type="text" id="preco" name="preco" placeholder="Ex.: 49.90">
+        </div>
+
+        <div class="campo">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria">
+            <option value="">Selecione...</option>
+            <option value="Editores">Editores</option>
+            <option value="Versionamento">Versionamento</option>
+            <option value="Frameworks">Frameworks</option>
+            <option value="Design">Design</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" rows="3" placeholder="Para que serve a ferramenta?"></textarea>
+          <!-- Opcional (desafio extra): contador de caracteres -->
+          <small class="contador-caracteres"><span id="contador-descricao">0</span> caracteres</small>
+        </div>
+
+        <div id="mensagem" class="mensagem" role="alert" aria-live="polite"></div>
+
+        <button type="submit" class="botao">Cadastrar</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>Projeto de JavaScript — Catálogo Interativo · Dupla: Vitor &amp; Victor</p>
+    <!-- Opcional (desafio extra): modo escuro -->
+    <button type="button" class="botao botao-secundario" id="btn-tema">Alternar modo escuro</button>
+  </footer>
+
+
+
+</body></html>
