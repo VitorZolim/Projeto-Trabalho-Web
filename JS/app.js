@@ -122,6 +122,7 @@ function criarCard(item){
 
 renderizar(catalogo.itens);
 
+<<<<<<< HEAD
 
 // [R3] Busca e filtro
 
@@ -162,5 +163,74 @@ busca.addEventListener("keydown", function (event) {
         busca.value = "";
         let resultado = filtragem(ferramentas);
         renderizar(resultado);
+=======
+// [R4] Cadastro de novas ferramentas com validação
+const form = document.getElementById('form-cadastro');
+const campoNome = document.getElementById('nome');
+const campoAno = document.getElementById('ano');
+const campoCategoria = document.getElementById('categoria');
+const campoDescricao = document.getElementById('descricao');
+const mensagem = document.getElementById('mensagem');
+
+function validar(nome, ano, categoria){
+    if(nome.length < 3){
+        campoNome.classList.add('erro');
+        throw new Error('O nome precisa ter pelo menos 3 caracteres.');
+    }
+
+    if(isNaN(ano) || ano < 1900 || ano > 2026){
+        campoAno.classList.add('erro');
+        throw new Error('Digite um ano válido entre 1900 e 2026.');
+    }
+
+    if(categoria === ''){
+        campoCategoria.classList.add('erro');
+        throw new Error('Selecione uma categoria.');
+    }
+}
+
+form.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    campoNome.classList.remove('erro');
+    campoAno.classList.remove('erro');
+    campoCategoria.classList.remove('erro');
+    mensagem.textContent = '';
+    mensagem.classList.remove('mensagem-erro');
+    mensagem.classList.remove('mensagem-sucesso');
+
+    const nome = campoNome.value.trim();
+    const ano = Number(campoAno.value);
+    const categoria = campoCategoria.value;
+    let descricao = campoDescricao.value.trim();
+
+    if(descricao === ''){
+        descricao = 'Sem descrição.';
+    }
+
+    try{
+        validar(nome, ano, categoria);
+
+        const novo = {
+            id: catalogo.itens.length + 1,
+            nome: nome,
+            categoria: categoria,
+            descricao: descricao,
+            ano: ano,
+            destaque: false
+        };
+
+        catalogo.adicionar(novo);
+        form.reset();
+
+        mensagem.textContent = 'Ferramenta cadastrada com sucesso!';
+        mensagem.classList.add('mensagem-sucesso');
+
+        renderizar(catalogo.itens);
+        
+    } catch(erro){
+        mensagem.textContent = erro.message;
+        mensagem.classList.add('mensagem-erro');
+>>>>>>> ffbf3e12a615b777a9939aae30eae72a7a72d28a
     }
 });
