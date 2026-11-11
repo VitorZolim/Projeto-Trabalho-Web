@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+header,
+footer {
+  background: #234;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+}
+
+h1,
+h2 {
+  margin: 0 0 10px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+section {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Formulário e filtros */
+.linha {
+  display: flex;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 1rem;
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Classe adicionada pelo JavaScript em campo inválido */
+.erro {
+  border: 2px solid red;
+  background: #ffeaea;
+}
+
+.mensagem {
+  min-height: 20px;
+}
+
+.mensagem-erro {
+  color: red;
+}
+
+.mensagem-sucesso {
+  color: green;
+}
+
+/* Painel */
+.painel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.painel p {
+  margin: 0;
+}
+
+/* Cards */
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+}
+
+.card p {
+  margin: 4px 0;
+}
+
+/* Classes por categoria (para o switch da Questão 02) */
+.cat-editores      { border-left: 5px solid steelblue; }
+.cat-versionamento { border-left: 5px solid orange; }
+.cat-frameworks    { border-left: 5px solid seagreen; }
+.cat-outros        { border-left: 5px solid gray; }
+
+
+.favorito {
+  background: #fff6d6;
+}
+
+.vazio {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #666;
+}
