@@ -30,10 +30,10 @@ Mapeamento dos trechos de código e funções onde cada requisito de avaliação
 
 ## 3. Divisão de Tarefas
 * **Victor Faleiros:**
-  * Responsável pelas Questões: `[]`
+  * Responsável pelas Questões: `[R2,R4,R6,R7]`
   * Contribuições: 
 * **Vitor David:**
-  * Responsável pelas Questões: `[]`
+  * Responsável pelas Questões: `[R1,R3,R5,R7]`
   * Contribuições: 
 
 ---
