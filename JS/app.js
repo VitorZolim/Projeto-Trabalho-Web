@@ -69,6 +69,7 @@ function renderizar(itens){
     if(itens.length === 0){
         const aviso = document.createElement('p');
         aviso.textContent = 'Nenhum item encontrado';
+        aviso.classList.add('vazio');
         lista.appendChild(aviso);
     } else {
         for(let i = 0; i < itens.length; i++){
@@ -81,7 +82,7 @@ function renderizar(itens){
 function criarCard(item){
     const card = document.createElement('div');
     card.classList.add('card');
-    
+
     switch(item.categoria){
         case 'Linguagem':
             card.classList.add('cat-linguagem');
@@ -91,6 +92,9 @@ function criarCard(item){
             break;
         case 'IDE':
             card.classList.add('cat-ide');
+            break;
+        case 'IA':
+            card.classList.add('cat-ia');
             break;
         default:
             card.classList.add('cat-outros');
@@ -108,11 +112,10 @@ function criarCard(item){
     //[R5] Adição do Botão e sua lógica
     const botao = document.createElement('button');
     if (item.destaque) {
-    botao.textContent = 'Remover destaque';
-    } 
-    else {
-    botao.textContent = 'Destacar';
-    }  
+        botao.textContent = 'Remover destaque';
+    } else {
+        botao.textContent = 'Destacar';
+    }
 
     card.classList.toggle('destaque', item.destaque);
     botao.addEventListener('click', () => {
@@ -135,20 +138,18 @@ function criarCard(item){
     return card;
 }
 
-renderizar(catalogo.itens);
-
 
 // [R3] Busca e filtro
 
 const busca = document.getElementById("busca");
-const categoria = document.getElementById("filtro-categoria");
+const filtroCategoria = document.getElementById("filtro-categoria");
 
-function filtragem(lista) {
+function filtragem(itens) {
     let nome = busca.value.toLowerCase();
-    let categoriaSelecionada = categoria.value;
+    let categoriaSelecionada = filtroCategoria.value;
     let novaLista = [];
 
-    lista.forEach((item) => {
+    itens.forEach((item) => {
         let correspondeTexto = item.nome.toLowerCase().indexOf(nome) !== -1;
 
         if (correspondeTexto && (categoriaSelecionada === "Todas" || item.categoria === categoriaSelecionada)) {
@@ -159,23 +160,26 @@ function filtragem(lista) {
     return novaLista;
 }
 
+// Filtra, mostra os cards e atualiza o painel (usada por R3, R4 e na carga da página)
+function atualizarTela() {
+    let resultado = filtragem(catalogo.itens);
+    renderizar(resultado);
+    atualizarPainel(resultado);
+}
+
 busca.addEventListener("input", function () {
-    let resultado = filtragem(ferramentas);
-    renderizar(resultado);
+    atualizarTela();
 });
 
-
-categoria.addEventListener("change", function () {
-    let resultado = filtragem(ferramentas);
-    renderizar(resultado);
+filtroCategoria.addEventListener("change", function () {
+    atualizarTela();
 });
-
 
 busca.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
         busca.value = "";
-        let resultado = filtragem(ferramentas);
-        renderizar(resultado);
+        filtroCategoria.value = "Todas";
+        atualizarTela();
     }
 });
 
@@ -241,8 +245,8 @@ form.addEventListener('submit', function(event){
         mensagem.textContent = 'Ferramenta cadastrada com sucesso!';
         mensagem.classList.add('mensagem-sucesso');
 
-        renderizar(catalogo.itens);
-        
+        atualizarTela();
+
     } catch(erro){
         mensagem.textContent = erro.message;
         mensagem.classList.add('mensagem-erro');
@@ -259,10 +263,48 @@ function alternarDestaque(item, card, botao) {
 
     if (item.destaque) {
         botao.textContent = 'Remover destaque';
-    } 
-    else {
+    } else {
         botao.textContent = 'Destacar';
-    }  
+    }
 
-    //atualizarPainel(catalogo.itens); possivelmente será adicionado após a [R6]
+    atualizarPainel(filtragem(catalogo.itens));
 }
+
+// [R6] Painel de estatísticas
+const statTotal = document.getElementById('stat-total');
+const statDestaques = document.getElementById('stat-favoritos');
+const statMedia = document.getElementById('stat-media');
+const statMaior = document.getElementById('stat-maior');
+
+function atualizarPainel(itens){
+    if(itens.length === 0){
+        statTotal.textContent = '0';
+        statDestaques.textContent = '0';
+        statMedia.textContent = '—';
+        statMaior.textContent = '—';
+        return;
+    }
+
+    let destaques = 0;
+    let soma = 0;
+    let maior = itens[0];
+
+    for(let i = 0; i < itens.length; i++){
+        if(itens[i].destaque === true){
+            destaques++;
+        }
+        soma += itens[i].ano;
+        if(itens[i].ano > maior.ano){
+            maior = itens[i];
+        }
+    }
+
+    const media = soma / itens.length;
+
+    statTotal.textContent = itens.length;
+    statDestaques.textContent = destaques;
+    statMedia.textContent = media.toFixed(2).replace('.', ',');
+    statMaior.textContent = maior.nome + ' (' + maior.ano + ')';
+}
+
+atualizarTela();
