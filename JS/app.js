@@ -1,3 +1,5 @@
+// [R7] Qualidade e organização do código
+
 // [R1] Dados do Catálogo
 
 const ferramentas = [
@@ -47,16 +49,15 @@ const catalogo = {
     adicionar : function(item){
         this.itens.push(item);
     },
-    emDestaque : function(){
-        let ferramentasDestaque = []
+    //Desafio Extra - Remoção de Item
+    remover : function(item){
+        const indice = this.itens.indexOf(item);
 
-        this.itens.forEach((f) =>{
-            if(f.destaque === true){
-                ferramentasDestaque.push(f);
-            }
-        });
-
-        return ferramentasDestaque;
+        if (indice !== -1) {
+            this.itens.splice(indice, 1);
+            return true;
+        }
+        return false;
     }
 };
 
@@ -122,6 +123,20 @@ function criarCard(item){
         alternarDestaque(item, card, botao);
     });
 
+    //Desafio Extra - Remoção de Item
+    const botaoRemover = document.createElement('button');
+    botaoRemover.textContent = 'Deletar';
+
+    botaoRemover.addEventListener('click', ()=>{
+        if (confirm(`Deseja remover ${item.nome}?`)) {
+            catalogo.remover(item);
+            const resultado = filtragem(catalogo.itens);
+
+            renderizar(resultado);
+            atualizarPainel(resultado);
+        }
+    });
+
     let texto = item.descricao;
     if(texto.length > 60){
         texto = texto.slice(0, 60) + '…';
@@ -134,6 +149,7 @@ function criarCard(item){
     card.appendChild(ano);
     card.appendChild(descricao);
     card.appendChild(botao);
+    card.appendChild(botaoRemover);
 
     return card;
 }
@@ -263,9 +279,12 @@ function alternarDestaque(item, card, botao) {
 
     if (item.destaque) {
         botao.textContent = 'Remover destaque';
-    } else {
+        destaque.style.display = 'none';
+    } 
+    else {
         botao.textContent = 'Destacar';
-    }
+        destaque.style.display = 'inline-block';
+    }  
 
     atualizarPainel(filtragem(catalogo.itens));
 }
@@ -303,8 +322,16 @@ function atualizarPainel(itens){
 
     statTotal.textContent = itens.length;
     statDestaques.textContent = destaques;
-    statMedia.textContent = media.toFixed(2).replace('.', ',');
+    statMedia.textContent = media.toFixed(2).replace('.', ','); 
     statMaior.textContent = maior.nome + ' (' + maior.ano + ')';
 }
 
 atualizarTela();
+
+//Desafio Extra - Alterar Cores
+
+const botaoTema = document.getElementById('btn-tema');
+
+botaoTema.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});

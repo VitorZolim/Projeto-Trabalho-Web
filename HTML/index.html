@@ -1,3 +1,4 @@
+<!-- [R7] Qualidade e organização do código -->
 <html lang="pt-BR"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
 
   <main class="principal">
 
-    <!-- BUSCA E FILTRO (Questão 03) -->
+    <!-- [R3] Busca e filtro -->
     <section class="bloco" aria-labelledby="titulo-busca">
       <h2 id="titulo-busca">Buscar e filtrar</h2>
       <div class="linha-filtros">
@@ -35,7 +36,7 @@
       </div>
     </section>
 
-    <!-- PAINEL DE ESTATÍSTICAS (Questão 06) -->
+    <!-- [R6] Painel de estatísticas -->
     <section class="bloco" aria-labelledby="titulo-painel">
       <h2 id="titulo-painel">Painel</h2>
       <div class="painel" id="painel">
@@ -48,23 +49,23 @@
           <strong id="stat-favoritos">—</strong>
         </div>
         <div class="estatistica">
-          <span class="estatistica-rotulo">Preço médio (R$)</span>
+          <span class="estatistica-rotulo">Ano</span>
           <strong id="stat-media">—</strong>
         </div>
         <div class="estatistica">
-          <span class="estatistica-rotulo">Mais caro</span>
+          <span class="estatistica-rotulo">Mais novo</span>
           <strong id="stat-maior">—</strong>
         </div>
       </div>
     </section>
 
-    <!-- LISTA DE CARDS (Questão 02): começa vazia, o JavaScript cria os cards -->
+    <!-- [R2] Renderização dinâmica -->
     <section class="bloco" aria-labelledby="titulo-lista">
       <h2 id="titulo-lista">Ferramentas</h2>
       <div class="lista" id="lista"></div>
     </section>
 
-    <!-- FORMULÁRIO DE CADASTRO (Questão 04): novalidate, quem valida é o JavaScript -->
+    <!-- [R4] Cadastro de novas ferramentas com validação -->
     <section class="bloco" aria-labelledby="titulo-form">
       <h2 id="titulo-form">Cadastrar nova ferramenta</h2>
 
@@ -75,26 +76,24 @@
         </div>
 
         <div class="campo">
-          <label for="preco">Preço mensal (R$)</label>
-          <input type="text" id="preco" name="preco" placeholder="Ex.: 49.90">
+          <label for="preco">Ano</label>
+          <input type="text" id="ano" name="ano" placeholder="Ex.: 1999">
         </div>
 
         <div class="campo">
           <label for="categoria">Categoria</label>
           <select id="categoria" name="categoria">
             <option value="">Selecione...</option>
-            <option value="Editores">Editores</option>
-            <option value="Versionamento">Versionamento</option>
-            <option value="Frameworks">Frameworks</option>
-            <option value="Design">Design</option>
+            <option value="Linguagem">Linguagem</option>
+            <option value="IDE">Ambiente de Desenvolvimento</option>
+            <option value="Framework">Frameworks</option>
+            <option value="IA">Inteligência Artificial</option>
           </select>
         </div>
 
         <div class="campo">
           <label for="descricao">Descrição</label>
           <textarea id="descricao" name="descricao" rows="3" placeholder="Para que serve a ferramenta?"></textarea>
-          <!-- Opcional (desafio extra): contador de caracteres -->
-          <small class="contador-caracteres"><span id="contador-descricao">0</span> caracteres</small>
         </div>
 
         <div id="mensagem" class="mensagem" role="alert" aria-live="polite"></div>
@@ -106,8 +105,8 @@
   </main>
 
   <footer class="rodape">
-    <p>Projeto de JavaScript — Catálogo Interativo · Dupla: Vitor &amp; Victor</p>
-    <!-- Opcional (desafio extra): modo escuro -->
+    <p>Projeto de JavaScript - Catálogo Interativo - Dupla: Vitor &amp; Victor</p>
+    <!-- Desafio Extra - modo escuro -->
     <button type="button" class="botao botao-secundario" id="btn-tema">Alternar modo escuro</button>
   </footer>
 
