@@ -149,6 +149,10 @@ body.dark-mode .bloco
   border-color: #333333;
 }
 
+body.dark-mode .card.destaque {
+    color: #222;
+}
+
 body.dark-mode .cabecalho,
 body.dark-mode .rodape
 {
